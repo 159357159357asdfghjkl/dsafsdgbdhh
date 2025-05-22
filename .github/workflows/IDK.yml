@@ -28,6 +28,7 @@ jobs:
           haxelib install hxdiscord_rpc
           haxelib git fnf-modcharting-tools https://github.com/TheZoroForce240/FNF-Modcharting-Tools
           haxelib git linc_luajit https://github.com/nebulazorua/linc_luajit
+          haxelib git flxanimate https://github.com/ShadowMario/flxanimate dev
           haxelib list
       - name: Compile
         run: haxelib run lime build ios

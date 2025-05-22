@@ -42,7 +42,9 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-
+		#if mobile
+		Sys.setCwd(StorageUtil.getStorageDirectory());
+		#end
 		if (stage != null)
 		{
 			init();
@@ -52,7 +54,7 @@ class Main extends Sprite
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 	}
-
+ 
 	private function init(?E:Event):Void
 	{
 		if (hasEventListener(Event.ADDED_TO_STAGE))
@@ -83,16 +85,15 @@ class Main extends Sprite
 		@:privateAccess game._customSoundTray = gameObjects.ui.Soundtray;
 		addChild(game);
 
-		#if !mobile
 		fpsVar = new Framerate(10, 3);
 		fpsVar.textColor = FlxColor.WHITE;
-		addChild(fpsVar);
+		
 		Lib.current.stage.align = "tl";
 		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
 		if(fpsVar != null) {
 			fpsVar.visible = ClientPrefs.showFPS;
 		}
-		#end
+		FlxG.game.addChild(fpsVar);
 
 		FlxG.autoPause = ClientPrefs.autoPause;
 		#if html5
@@ -103,6 +104,9 @@ class Main extends Sprite
 		
 		#if CRASH_HANDLER
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
+		#end
+		#if mobile
+		lime.system.System.allowScreenTimeout = ClientPrefs.screensaver;
 		#end
 
 		FlxG.signals.gameResized.add(function (w, h) {

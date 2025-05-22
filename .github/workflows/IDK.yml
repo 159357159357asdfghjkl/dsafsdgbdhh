@@ -1,0 +1,43 @@
+name: IDK
+on: workflow_dispatch
+jobs:
+  iOS:
+    runs-on: macos-15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+      - name: Setup Haxe
+        uses: krdlab/setup-haxe@master
+        with:
+          haxe-version: 4.2.5
+      - name: Install Libraries
+        run: |
+          haxelib setup ~/haxelib
+          haxelib install hxcpp 4.3.2
+          haxelib install lime 8.0.2
+          haxelib install openfl 9.2.2
+          haxelib install flixel 5.3.1
+          haxelib install flixel-ui 2.5.0
+          haxelib install flixel-addons 3.1.1
+          haxelib install hxvlc 1.2.0
+          haxelib install hscript 2.5.0
+          haxelib install flixel-tools 1.5.1
+          haxelib git fnf-modcharting-tools https://github.com/TheZoroForce240/FNF-Modcharting-Tools
+          haxelib git flxanimate https://github.com/ShadowMario/flxanimate dev
+          haxelib git linc_luajit https://github.com/tchcfhvgd/linc_luajit
+          haxelib list
+      - name: Compile
+        run: haxelib run lime build ios
+      - name: Make Ipa
+        run: |
+          cd export/release/ios/build/*-iphoneos
+          mkdir Payload
+          mv *.app Payload
+          zip -r *.ipa Payload
+      - name: Upload Artifact
+        if: ${{ success() }}
+        uses: actions/upload-artifact@main
+        with:
+          name: Funkin.avi
+          path: export/release/ios/build/Release-iphoneos/*.ipa
+          if-no-files-found: error

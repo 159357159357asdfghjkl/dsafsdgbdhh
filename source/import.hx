@@ -103,7 +103,11 @@ import flixel.text.*;
 import flixel.graphics.tile.*;
 import flixel.graphics.frames.*;
 import flixel.graphics.atlas.*;
-
+import mobile.*;
+import mobile.backend.*;
+import mobile.input.*;
+import mobile.objects.*;
+import mobile.options.*;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.tweens.FlxTween.FlxTweenManager;
 import flixel.text.FlxText.FlxTextAlign;

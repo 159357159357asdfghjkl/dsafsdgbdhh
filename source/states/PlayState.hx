@@ -2846,7 +2846,12 @@ class PlayState extends MusicBeatState
 			}
 		}
 		#end
-
+		#if TOUCH_CONTROLS_ALLOWED
+		addHitbox();
+		hitbox.visible = true;
+		hitbox.onButtonDown.add(onHintPress);
+		hitbox.onButtonUp.add(onHintRelease);
+		#end
 		var daSong:String = Paths.formatToSongPath(curSong);
 		if (isStoryMode && !seenCutscene)
 		{
@@ -3448,7 +3453,10 @@ class PlayState extends MusicBeatState
 		lyricsIcon.visible = false;
 		lyricsIcon.cameras = [camOther];
 		add(lyricsIcon);
-
+		#if (TOUCH_CONTROLS_ALLOWED)
+		addTouchPad('NONE', 'P');
+		addTouchPadCamera();
+		#end
 		callOnLuas('onCreatePost', []);
 
 		super.create();
@@ -5694,7 +5702,7 @@ class PlayState extends MusicBeatState
 			scoreTxt.visible = false;
 		}
 
-		if (controls.PAUSE && startedCountdown && canPause)
+		if ((controls.PAUSE  #if TOUCH_CONTROLS_ALLOWED || touchPad?.buttonP.justPressed #end ) && startedCountdown && canPause)
 		{
 			var ret:Dynamic = callOnLuas('onPause', [], false);
 			if(ret != FunkinLua.Function_Stop) {
@@ -7428,12 +7436,30 @@ class PlayState extends MusicBeatState
 			});
 		}
 	}
+	#if TOUCH_CONTROLS_ALLOWED
+	private function onHintPress(button:TouchButton):Void
+	{
+		var buttonCode:Int = (button.IDs[0].toString().startsWith('HITBOX')) ? button.IDs[1] : button.IDs[0];
+		callOnScripts('onHintPressPre', [buttonCode]);
+		if (button.justPressed) keyPressed(buttonCode);
+		callOnScripts('onHintPress', [buttonCode]);
+	}
 
+	private function onHintRelease(button:TouchButton):Void
+	{
+		var buttonCode:Int = (button.IDs[0].toString().startsWith('HITBOX')) ? button.IDs[1] : button.IDs[0];
+		callOnScripts('onHintReleasePre', [buttonCode]);
+		if(buttonCode > -1) keyReleased(buttonCode);
+		callOnScripts('onHintRelease', [buttonCode]);
+	}
+	#end
 
 	public var transitioning = false;
 	public var hasEndingScene:Bool = false;
 	public function endSong():Void
-	{
+	{		#if TOUCH_CONTROLS_ALLOWED
+		hitbox.visible = #if !android touchPad.visible = #end false;
+		#end
 		//Should kill you if you tried to cheat
 		if(!startingSong) {
 			notes.forEach(function(daNote:Note) {

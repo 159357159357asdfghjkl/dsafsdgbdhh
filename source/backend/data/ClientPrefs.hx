@@ -36,6 +36,16 @@ class ClientPrefs {
 	public static var useGPUCaching = false;
 	public static var debugInfo = false;
 	public static var autoPause = true;
+	public static var extraHints:String = "NONE"; // hitbox extra hint option
+	public static var hitbox2:Bool = true; // hitbox extra button position option
+	public static var dynamicColors:Bool = true; // yes cause its cool -Karim
+	public static var controlsAlpha:Float = 0.6;
+	public static var screensaver:Bool = false;
+	public static var wideScreen:Bool = false;
+	public static var hitboxType:String = "Gradient";
+	public static var popUpRating:Bool = true;
+	public static var vsync:Bool = false;
+	public static var vibrating:Bool = false;
 	public static var gameplaySettings:Map<String, Dynamic> = [
 		'scrollspeed' => 1.0,
 		'scrolltype' => 'multiplicative', 
@@ -139,7 +149,17 @@ class ClientPrefs {
 		settings.data.checkForUpdates = checkForUpdates;
 		settings.data.comboStacking = comboStacking;
 		settings.data.autoPause = autoPause;
-	
+
+		settings.data.controlsAlpha = controlsAlpha;
+		settings.data.screensaver = screensaver;
+		settings.data.hitboxType = hitboxType;
+		settings.data.vibrating = vibrating;
+		settings.data.vsync = vsync;
+		settings.data.wideScreen = wideScreen;
+		settings.data.popUpRating = popUpRating;
+		settings.data.hitbox2 = hitbox2;
+		settings.data.dynamicColors = dynamicColors;
+		settings.data.extraHints = extraHints;
 		settings.flush();
 
 		var save:FlxSave = new FlxSave();
@@ -265,6 +285,36 @@ class ClientPrefs {
 		}
 		if(settings.data.pauseMusic != null) {
 			pauseMusic = settings.data.pauseMusic;
+		}
+		if(settings.data.extraHints != null) {
+			extraHints = settings.data.extraHints;
+		}
+		if(settings.data.hitbox2 != null) {
+			hitbox2 = settings.data.hitbox2;
+		}
+		if(settings.data.dynamicColors != null) {
+			dynamicColors = settings.data.dynamicColors;
+		}
+		if(settings.data.controlsAlpha != null) {
+			controlsAlpha = settings.data.controlsAlpha;
+		}
+		if(settings.data.screensaver != null) {
+			screensaver = settings.data.screensaver;
+		}
+		if(settings.data.wideScreen != null) {
+			wideScreen = settings.data.wideScreen;
+		}
+		if(settings.data.hitboxType != null) {
+			hitboxType = settings.data.hitboxType;
+		}
+		if(settings.data.popUpRating != null) {
+			popUpRating = settings.data.popUpRating;
+		}
+		if(settings.data.vsync != null) {
+			vsync = settings.data.vsync;
+		}
+		if(settings.data.vibrating != null) {
+			vibrating = settings.data.vibrating;
 		}
 		if(settings.data.gameplaySettings != null)
 		{

@@ -157,134 +157,133 @@ class Controls extends FlxActionSet
 	public var keyboardScheme = KeyboardScheme.None;
 
 	public var UI_UP(get, never):Bool;
+	inline function get_UP()
+		return _up.check() || mobileControlsPressed(BUTTON_UP);
 
-	inline function get_UI_UP()
-		return _ui_up.check();
+	public var LEFT(get, never):Bool;
 
-	public var UI_LEFT(get, never):Bool;
+	inline function get_LEFT()
+		return _left.check() || mobileControlsPressed(BUTTON_LEFT);
 
-	inline function get_UI_LEFT()
-		return _ui_left.check();
+	public var RIGHT(get, never):Bool;
 
-	public var UI_RIGHT(get, never):Bool;
+	inline function get_RIGHT()
+		return _right.check() || mobileControlsPressed(BUTTON_RIGHT);
 
-	inline function get_UI_RIGHT()
-		return _ui_right.check();
+	public var DOWN(get, never):Bool;
 
-	public var UI_DOWN(get, never):Bool;
+	inline function get_DOWN()
+		return _down.check() || mobileControlsPressed(BUTTON_DOWN);
 
-	inline function get_UI_DOWN()
-		return _ui_down.check();
+	public var UP_P(get, never):Bool;
 
-	public var UI_UP_P(get, never):Bool;
+	inline function get_UP_P()
+		return _upP.check() || mobileControlsJustPressed(BUTTON_UP);
 
-	inline function get_UI_UP_P()
-		return _ui_upP.check();
+	public var LEFT_P(get, never):Bool;
 
-	public var UI_LEFT_P(get, never):Bool;
+	inline function get_LEFT_P()
+		return _leftP.check() || mobileControlsJustPressed(BUTTON_LEFT);
 
-	inline function get_UI_LEFT_P()
-		return _ui_leftP.check();
+	public var RIGHT_P(get, never):Bool;
 
-	public var UI_RIGHT_P(get, never):Bool;
+	inline function get_RIGHT_P()
+		return _rightP.check() || mobileControlsJustPressed(BUTTON_RIGHT);
 
-	inline function get_UI_RIGHT_P()
-		return _ui_rightP.check();
+	public var DOWN_P(get, never):Bool;
 
-	public var UI_DOWN_P(get, never):Bool;
+	inline function get_DOWN_P()
+		return _downP.check() || mobileControlsJustPressed(BUTTON_DOWN);
 
-	inline function get_UI_DOWN_P()
-		return _ui_downP.check();
+	public var UP_R(get, never):Bool;
 
-	public var UI_UP_R(get, never):Bool;
+	inline function get_UP_R()
+		return _upR.check() || mobileControlsJustReleased(BUTTON_UP);
 
-	inline function get_UI_UP_R()
-		return _ui_upR.check();
+	public var LEFT_R(get, never):Bool;
 
-	public var UI_LEFT_R(get, never):Bool;
+	inline function get_LEFT_R()
+		return _leftR.check() || mobileControlsJustReleased(BUTTON_LEFT);
 
-	inline function get_UI_LEFT_R()
-		return _ui_leftR.check();
+	public var RIGHT_R(get, never):Bool;
 
-	public var UI_RIGHT_R(get, never):Bool;
+	inline function get_RIGHT_R()
+		return _rightR.check() || mobileControlsJustReleased(BUTTON_RIGHT);
 
-	inline function get_UI_RIGHT_R()
-		return _ui_rightR.check();
+	public var DOWN_R(get, never):Bool;
 
-	public var UI_DOWN_R(get, never):Bool;
-
-	inline function get_UI_DOWN_R()
-		return _ui_downR.check();
+	inline function get_DOWN_R()
+		return _downR.check() || mobileControlsJustReleased(BUTTON_DOWN);
 
 	public var NOTE_UP(get, never):Bool;
 
 	inline function get_NOTE_UP()
-		return _note_up.check();
+		return _noteup.check() || mobileControlsPressed(MobileInputID.NOTE_UP);
 
 	public var NOTE_LEFT(get, never):Bool;
 
 	inline function get_NOTE_LEFT()
-		return _note_left.check();
+		return _noteleft.check() || mobileControlsPressed(MobileInputID.NOTE_LEFT);
 
 	public var NOTE_RIGHT(get, never):Bool;
 
 	inline function get_NOTE_RIGHT()
-		return _note_right.check();
-
+		return _noteright.check() || mobileControlsPressed(MobileInputID.NOTE_RIGHT);
+	
 	public var NOTE_DOWN(get, never):Bool;
 
 	inline function get_NOTE_DOWN()
-		return _note_down.check();
+		return _notedown.check() || mobileControlsPressed(MobileInputID.NOTE_DOWN);
 
 	public var NOTE_UP_P(get, never):Bool;
 
 	inline function get_NOTE_UP_P()
-		return _note_upP.check();
+		return _noteupP.check() || mobileControlsJustPressed(MobileInputID.NOTE_UP);
 
 	public var NOTE_LEFT_P(get, never):Bool;
 
 	inline function get_NOTE_LEFT_P()
-		return _note_leftP.check();
+		return _noteleftP.check() || mobileControlsJustPressed(MobileInputID.NOTE_LEFT);
 
 	public var NOTE_RIGHT_P(get, never):Bool;
 
 	inline function get_NOTE_RIGHT_P()
-		return _note_rightP.check();
+		return _noterightP.check() || mobileControlsJustPressed(MobileInputID.NOTE_RIGHT);
 
 	public var NOTE_DOWN_P(get, never):Bool;
 
 	inline function get_NOTE_DOWN_P()
-		return _note_downP.check();
+		return _notedownP.check() || mobileControlsJustPressed(MobileInputID.NOTE_DOWN);
 
 	public var NOTE_UP_R(get, never):Bool;
 
 	inline function get_NOTE_UP_R()
-		return _note_upR.check();
+		return _noteupR.check() || mobileControlsJustReleased(MobileInputID.NOTE_UP);
 
 	public var NOTE_LEFT_R(get, never):Bool;
 
 	inline function get_NOTE_LEFT_R()
-		return _note_leftR.check();
+		return _noteleftR.check() || mobileControlsJustReleased(MobileInputID.NOTE_LEFT);
 
 	public var NOTE_RIGHT_R(get, never):Bool;
 
 	inline function get_NOTE_RIGHT_R()
-		return _note_rightR.check();
+		return _noterightR.check() || mobileControlsJustReleased(MobileInputID.NOTE_RIGHT);
 
 	public var NOTE_DOWN_R(get, never):Bool;
 
 	inline function get_NOTE_DOWN_R()
-		return _note_downR.check();
+		return _notedownR.check() || mobileControlsJustReleased(MobileInputID.NOTE_DOWN);
 
 	public var ACCEPT(get, never):Bool;
 
 	inline function get_ACCEPT()
-		return _accept.check();
+		return _accept.check() || mobileControlsJustPressed(BUTTON_A);
 
 	public var BACK(get, never):Bool;
 
 	inline function get_BACK()
-		return _back.check();
+		return _back.check() || mobileControlsJustPressed(BUTTON_B);
 
 	public var PAUSE(get, never):Bool;
 
@@ -295,6 +294,69 @@ class Controls extends FlxActionSet
 
 	inline function get_RESET()
 		return _reset.check();
+
+
+
+	
+	public function mobileControlsJustPressed(id:MobileButtonsList):Bool
+		{
+			var bools:Array<Bool> = [false, false, false];
+	
+			var state:Dynamic = MusicBeatState.instance;
+	
+			if (state != null && state.touchPad != null)
+				bools[0] = state.touchPad.buttonJustPressed(id);
+	
+			if (state != null && state.mobileControls != null)
+				bools[1] = state.mobileControls.buttonJustPressed(id);
+	
+			state = MusicBeatSubstate.instance;
+	
+			if (state != null && state.touchPad != null)
+				bools[2] = state.touchPad.buttonJustPressed(id);
+	
+			return bools[0] || bools[1] || bools[2];
+		}
+	
+		public function mobileControlsJustReleased(id:MobileButtonsList):Bool
+		{
+			var bools:Array<Bool> = [false, false, false];
+	
+			var state:Dynamic = MusicBeatState.instance;
+	
+			if (state != null && state.touchPad != null)
+				bools[0] = state.touchPad.buttonJustReleased(id);
+	
+			if (state != null && state.mobileControls != null)
+				bools[1] = state.mobileControls.buttonJustReleased(id);
+	
+			state = MusicBeatSubstate.instance;
+	
+			if (state != null && state.touchPad != null)
+				bools[2] = state.touchPad.buttonJustReleased(id);
+	
+			return bools[0] || bools[1] || bools[2];
+		}
+	
+		public function mobileControlsPressed(id:MobileButtonsList):Bool
+		{
+			var bools:Array<Bool> = [false, false, false];
+	
+			var state:Dynamic = MusicBeatState.instance;
+	
+			if (state != null && state.touchPad != null)
+				bools[0] = state.touchPad.buttonPressed(id);
+	
+			if (state != null && state.mobileControls != null)
+				bools[1] = state.mobileControls.buttonPressed(id);
+	
+			state = MusicBeatSubstate.instance;
+	
+			if (state != null && state.touchPad != null)
+				bools[2] = state.touchPad.buttonPressed(id);
+	
+			return bools[0] || bools[1] || bools[2];
+		}
 
 	#if (haxe >= "4.0.0")
 	public function new(name, scheme = None)

@@ -89,11 +89,25 @@ class VisualsUISubState extends BaseOptionsMenu
 			'bool',
 			true);
 		addOption(option);
-
+		#if sys
+		var option:Option = new Option('VSync',
+			'If checked, Enables VSync fixing any screen tearing at the cost of capping the FPS to screen refresh rate.\n(Must restart the game to have an effect)',
+			'vsync',
+			BOOL);
+		option.onChange = onChangeVSync;
+		addOption(option);
+		#end
 		super();
 	}
-
-	#if !mobile
+	#if sys
+	function onChangeVSync()
+	{
+		var file:String = StorageUtil.rootDir + "vsync.txt";
+		if(NativeFileSystem.exists(file))
+			NativeFileSystem.deleteFile(file);
+		File.saveContent(file, Std.string(ClientPrefs.data.vsync));
+	}
+	#end
 	function onChangeFPSCounter()
 	{
 		if(Main.fpsVar != null)
@@ -113,7 +127,6 @@ class VisualsUISubState extends BaseOptionsMenu
 			FlxG.updateFramerate = ClientPrefs.framerate;
 		}
 	}
-	#end
 
 	function onChangeAntiAliasing()
 		{

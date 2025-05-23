@@ -30,6 +30,10 @@ class OptionsState extends MusicBeatState
 					openSubState(new GraphicsSettingsSubState());
 			case 'Gameplay':
 				openSubState(new GameplaySettingsSubState());
+				#if (TOUCH_CONTROLS_ALLOWED || mobile)
+				case 'Mobile Options':
+					openSubState(new mobile.options.MobileOptionsSubState());
+				#end
 		/*	case 'Note Colors':
 				openSubState(new NotesSubState());
 			case 'Controls':
